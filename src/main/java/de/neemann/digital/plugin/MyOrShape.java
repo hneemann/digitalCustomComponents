@@ -23,7 +23,7 @@ public class MyOrShape implements Shape {
     private final PinDescriptions outputs;
 
     /**
-     * Creates a new instance
+     * Creates a new instance.
      *
      * @param elementAttributes the attributes of the component
      * @param inputs            the inputs
@@ -35,7 +35,7 @@ public class MyOrShape implements Shape {
     }
 
     /**
-     * Attach the positions to the inputs and outputs.
+     * Defines a positions for each input and output.
      * CAUTION: The coordinates needs to be multiple of the grid size!
      *
      * @return the pins to draw
@@ -49,12 +49,18 @@ public class MyOrShape implements Shape {
     }
 
     /**
-     * You can return an interactor which allows to interact with the component if the simulation is running.
+     * This method call connects the created model element to the shape which represents the model node.
+     * If the look of the shape depends on an inputs state, the shape has to register the guiObserver
+     * to all of the inputs ObservableValues it depends on.
+     * To access the actual state while drawing, the Shape needs to store the IOState or the needed inputs
+     * in a member variable.
      * In this case null is returned because there is no interaction.
      *
-     * @param ioState     the state of the element, never null
-     * @param guiObserver can be used to update the GUI by calling hasChanged, maybe null
-     * @return the interactor
+     * @param ioState     The state of the element. Is never null.
+     * @param guiObserver Can be used to update the GUI by calling hasChanged, Is maybe null.
+     *                    If the shape depends on a signal value, you can add this observer to
+     *                    the signal. In this case a repaint is initiated, if the signal changes.
+     * @return The interactor which is used to interact with the shape during the simulation.
      */
     @Override
     public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
@@ -65,7 +71,8 @@ public class MyOrShape implements Shape {
      * Draw the component.
      *
      * @param graphic   interface to draw to
-     * @param highLight true if a highlighted drawing is required
+     * @param highLight Null means no highlighting at all. If highlight is not null, highlighting is active.
+     *                  The given style should be used to highlight the drawing.
      */
     @Override
     public void drawTo(Graphic graphic, Style highLight) {
