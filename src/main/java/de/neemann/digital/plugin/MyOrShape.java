@@ -21,6 +21,7 @@ import static de.neemann.digital.draw.shapes.GenericShape.SIZE;
 public class MyOrShape implements Shape {
     private final PinDescriptions inputs;
     private final PinDescriptions outputs;
+    private final int ellipseSize;
 
     /**
      * Creates a new instance.
@@ -32,6 +33,7 @@ public class MyOrShape implements Shape {
     public MyOrShape(ElementAttributes elementAttributes, PinDescriptions inputs, PinDescriptions outputs) {
         this.inputs = inputs;
         this.outputs = outputs;
+        ellipseSize = elementAttributes.get(MyOr.ELLIPSE_SIZE);
     }
 
     /**
@@ -76,7 +78,7 @@ public class MyOrShape implements Shape {
      */
     @Override
     public void drawTo(Graphic graphic, Style highLight) {
-        graphic.drawCircle(vec(0, -SIZE), vec(SIZE * 3, SIZE * 3), Style.NORMAL);
+        graphic.drawCircle(vec(0, SIZE - SIZE * ellipseSize), vec(SIZE * 3, SIZE + SIZE * ellipseSize), Style.NORMAL);
         graphic.drawText(vec(SIZE * 3 / 2, SIZE), vec(1, SIZE), "Or", Orientation.CENTERCENTER, Style.NORMAL);
     }
 }
