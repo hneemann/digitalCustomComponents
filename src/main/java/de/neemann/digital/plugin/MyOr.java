@@ -15,26 +15,20 @@ import static de.neemann.digital.core.element.PinInfo.input;
 public class MyOr extends Node implements Element {
 
     static final Key<Integer> ELLIPSE_SIZE =
-            new Key.KeyInteger("ellipseSize", 2) {
-                @Override
-                public String getName() {
-                    return "Ellipse Size";
-                }
-
-                @Override
-                public String getDescription() {
-                    return "Sets the size of the ellipse.";
-                }
-            }
+            new Key.KeyInteger("ellipseSize", 2)
                     .setMin(1)
                     .setMax(5)
-                    .setComboBoxValues(new Integer[]{1, 2, 3, 4, 5});
+                    .setComboBoxValues(new Integer[]{1, 2, 3, 4, 5})
+                    .setName("Ellipse Size")
+                    .setDescription("Sets the size of the ellipse.");
 
     /**
      * The description of the new component
      */
     public static final ElementTypeDescription DESCRIPTION
-            = new ElementTypeDescription(MyOr.class, input("a"), input("b"))
+            = new ElementTypeDescription(MyOr.class,
+            input("a", "or input a"),
+            input("b", "or input b"))
             .addAttribute(Keys.ROTATE)   // allows to rotate the new component
             .addAttribute(Keys.BITS)     // allows to set a bit number to the component
             .addAttribute(ELLIPSE_SIZE); // the size of the ellipse
@@ -55,7 +49,7 @@ public class MyOr extends Node implements Element {
      */
     public MyOr(ElementAttributes attr) {
         bits = attr.getBits();
-        out = new ObservableValue("out", bits);
+        out = new ObservableValue("out", bits).setDescription("The components single output");
     }
 
     /**

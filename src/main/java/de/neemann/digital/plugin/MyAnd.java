@@ -21,7 +21,9 @@ public class MyAnd extends Node implements Element {
      * The description of the new component
      */
     public static final ElementTypeDescription DESCRIPTION
-            = new ElementTypeDescription(MyAnd.class, input("a"), input("b"))
+            = new ElementTypeDescription(MyAnd.class,
+            input("a", "and input a"),
+            input("b", "and input b"))
             .addAttribute(Keys.ROTATE)  // allows to rotate the new component
             .addAttribute(Keys.BITS);   // allows to set a bit number to the component
 
@@ -42,7 +44,7 @@ public class MyAnd extends Node implements Element {
      */
     public MyAnd(ElementAttributes attr) {
         bits = attr.getBits();
-        out = new ObservableValue("out", bits);
+        out = new ObservableValue("out", bits).setDescription("and output");
     }
 
     /**
