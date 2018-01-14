@@ -13,7 +13,7 @@ This repository shows an example containing two simple components implemented in
 
 To use these components, you must first create a jar file containing all the necessary classes.
 The easiest way is to use `maven`. When the jar is created, you can attach this JAR file to the 
-simulator by selecting the created JAR file - `pluginExample-.0-SNAPSHOT.jar` in this example - in 
+simulator by selecting the created JAR file - `pluginExample-1.0-SNAPSHOT.jar` in this example - in 
 the simulators settings ("Java library").
 
 The class `DemoComponentSource.java` contains a `Main` method. This method can be used to debug your 
