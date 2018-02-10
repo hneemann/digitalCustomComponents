@@ -8,7 +8,6 @@ import de.neemann.digital.core.element.Element;
 import de.neemann.digital.core.element.ElementAttributes;
 import de.neemann.digital.core.element.ElementTypeDescription;
 import de.neemann.digital.core.element.Keys;
-import de.neemann.digital.draw.elements.PinException;
 
 import static de.neemann.digital.core.element.PinInfo.input;
 
@@ -53,7 +52,7 @@ public class MyAnd extends Node implements Element {
      * It is not allowed to write to one of the outputs!!!
      */
     @Override
-    public void readInputs() throws NodeException {
+    public void readInputs() {
         long valueA = a.getValue();
         long valueB = b.getValue();
         outValue = valueA & valueB;
@@ -64,7 +63,7 @@ public class MyAnd extends Node implements Element {
      * It is not allowed to read one of the inputs!!!
      */
     @Override
-    public void writeOutputs() throws NodeException {
+    public void writeOutputs() {
         out.setValue(outValue);
     }
 
@@ -92,10 +91,9 @@ public class MyAnd extends Node implements Element {
      * This method must return the output signals of your component.
      *
      * @return the output signals
-     * @throws PinException PinException
      */
     @Override
-    public ObservableValues getOutputs() throws PinException {
+    public ObservableValues getOutputs() {
         return new ObservableValues(out);
     }
 }

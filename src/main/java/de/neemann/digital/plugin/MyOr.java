@@ -5,7 +5,6 @@ import de.neemann.digital.core.NodeException;
 import de.neemann.digital.core.ObservableValue;
 import de.neemann.digital.core.ObservableValues;
 import de.neemann.digital.core.element.*;
-import de.neemann.digital.draw.elements.PinException;
 
 import static de.neemann.digital.core.element.PinInfo.input;
 
@@ -58,7 +57,7 @@ public class MyOr extends Node implements Element {
      * It is not allowed to write to one of the outputs!!!
      */
     @Override
-    public void readInputs() throws NodeException {
+    public void readInputs() {
         long valueA = a.getValue();
         long valueB = b.getValue();
         outValue = valueA | valueB;
@@ -69,7 +68,7 @@ public class MyOr extends Node implements Element {
      * It is not allowed to read one of the inputs!!!
      */
     @Override
-    public void writeOutputs() throws NodeException {
+    public void writeOutputs() {
         out.setValue(outValue);
     }
 
@@ -97,10 +96,9 @@ public class MyOr extends Node implements Element {
      * This method must return the output signals of your component.
      *
      * @return the output signals
-     * @throws PinException PinException
      */
     @Override
-    public ObservableValues getOutputs() throws PinException {
+    public ObservableValues getOutputs() {
         return new ObservableValues(out);
     }
 }
