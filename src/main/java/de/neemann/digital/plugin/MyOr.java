@@ -17,7 +17,7 @@ public class MyOr extends Node implements Element {
             new Key.KeyInteger("ellipseSize", 2)
                     .setMin(1)
                     .setMax(5)
-                    .setComboBoxValues(new Integer[]{1, 2, 3, 4, 5})
+                    .setComboBoxValues(1, 2, 3, 4, 5)
                     .setName("Ellipse Size")
                     .setDescription("Sets the size of the ellipse.");
 
