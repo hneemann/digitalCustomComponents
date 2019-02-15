@@ -25,6 +25,9 @@ public class DemoComponentSource implements ComponentSource {
 
         // add a component and also provide a custom shape
         manager.addComponent("my folder/my sub folder", MyOr.DESCRIPTION, MyOrShape::new);
+
+        // add a component and use the default shape
+        manager.addComponent("my folder/my sub folder", MultiNot.DESCRIPTION);
     }
 
     /**
