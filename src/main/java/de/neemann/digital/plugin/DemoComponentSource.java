@@ -4,6 +4,7 @@ import de.neemann.digital.draw.library.ComponentManager;
 import de.neemann.digital.draw.library.ComponentSource;
 import de.neemann.digital.draw.library.ElementLibrary;
 import de.neemann.digital.draw.library.InvalidNodeException;
+import de.neemann.digital.draw.shapes.GenericShape;
 import de.neemann.digital.gui.Main;
 
 /**
@@ -28,6 +29,11 @@ public class DemoComponentSource implements ComponentSource {
 
         // add a component and use the default shape
         manager.addComponent("my folder/my sub folder", MultiNot.DESCRIPTION);
+
+        // add a component and use the default shape
+        manager.addComponent("my folder/RAM", MultiPortRAM.DESCRIPTION,
+                (attr, inputs, outputs) ->
+                        new GenericShape("RAM", inputs, outputs, attr.getLabel(), true, 5));
     }
 
     /**
