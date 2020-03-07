@@ -22,7 +22,14 @@ public class MyAnd extends Node implements Element {
     public static final ElementTypeDescription DESCRIPTION
             = new ElementTypeDescription(MyAnd.class,
             input("a", "and input a"),
-            input("b", "and input b"))
+            input("b", "and input b")) {
+
+        @Override
+        public String getDescription(ElementAttributes elementAttributes) {
+            return "A simple AND gate which shows the implementation of a custom component.";
+        }
+
+    }
             .addAttribute(Keys.ROTATE)  // allows to rotate the new component
             .addAttribute(Keys.BITS);   // allows to set a bit number to the component
 
