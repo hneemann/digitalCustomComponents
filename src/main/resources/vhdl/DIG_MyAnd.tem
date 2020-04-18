@@ -1,0 +1,40 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+<?
+   if (elem.Bits=1) {
+      export entityName:="DIG_MyAnd";?>
+
+entity DIG_MyAnd is
+  port (
+    y: out std_logic;
+    a: in std_logic;
+    b: in std_logic );
+end DIG_MyAnd;
+
+architecture Behavioral of DIG_MyAnd is
+begin
+   y <= a AND b;
+end Behavioral;
+
+<? } else {
+      export entityName:="DIG_MyAnd_Bus";?>
+
+entity DIG_MyAnd_Bus is
+  generic ( Bits: integer ); <? vhdl.registerGeneric("Bits");?>
+  port (
+    y: out std_logic_vector((Bits-1) downto 0);
+    a: in std_logic_vector((Bits-1) downto 0);
+    b: in std_logic_vector((Bits-1) downto 0)  );
+end DIG_MyAnd_Bus;
+
+architecture Behavioral of DIG_MyAnd_Bus is
+begin
+   y <= a AND b;
+end Behavioral;
+
+<? } ?>
+
+
+
