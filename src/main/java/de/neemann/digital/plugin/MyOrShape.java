@@ -1,7 +1,6 @@
 package de.neemann.digital.plugin;
 
 import de.neemann.digital.core.ObservableValue;
-import de.neemann.digital.core.Observer;
 import de.neemann.digital.core.Value;
 import de.neemann.digital.core.element.ElementAttributes;
 import de.neemann.digital.core.element.PinDescriptions;
@@ -66,15 +65,11 @@ public class MyOrShape implements Shape {
      * In this case null is returned because there is no user interaction with the shape.
      *
      * @param ioState     The state of the element. Is never null.
-     * @param guiObserver Can be used to update the GUI by calling hasChanged, Is maybe null.
-     *                    If the shape depends on a signal value, you can add this observer to
-     *                    the signal. In this case a repaint is initiated, if the signal changes.
      * @return The interactor which is used to interact with the shape during the simulation.
      */
     @Override
-    public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public InteractorInterface applyStateMonitor(IOState ioState) {
         output = ioState.getOutput(0);
-        output.addObserverToValue(guiObserver);
         return null;
     }
 
